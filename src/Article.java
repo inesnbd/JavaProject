@@ -33,7 +33,7 @@ public class Article {
 		return prixHT;
 	}
 
-	public void setPrixHT(float prixht) {
+	public void setPrixHT(float prixHT) {
 		this.prixHT = prixHT;
 	}
 
