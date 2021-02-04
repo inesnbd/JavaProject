@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 
 public class Acceuil extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -32,6 +34,8 @@ public class Acceuil extends JFrame {
 		btnNewButton_1_1_1.setBounds(154, 51, 100, 28);
 		btnNewButton_1_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+		        new produitlaitier().setVisible(true);
 			}
 		});
 		getContentPane().setLayout(null);
@@ -45,6 +49,8 @@ public class Acceuil extends JFrame {
 		btnNewButton_1_1.setBounds(154, 81, 100, 28);
 		btnNewButton_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+		        new fruit().setVisible(true);
 			}
 		});
 
@@ -52,6 +58,8 @@ public class Acceuil extends JFrame {
 		btnNewButton.setBounds(154, 110, 100, 28);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+		        new legume().setVisible(true); 
 			}
 		});
 		getContentPane().add(btnNewButton);
@@ -62,6 +70,8 @@ public class Acceuil extends JFrame {
 		btnNewButton_1.setBounds(154, 141, 100, 28);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+		        new viande().setVisible(true);
 			}
 		});
 		getContentPane().add(btnNewButton_1);
