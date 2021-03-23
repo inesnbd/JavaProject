@@ -21,6 +21,11 @@ public class addArticle extends JFrame {
 	
 	private JPanel contentPane;
 	private JTextField textField;
+	long reference ;
+	String intitule;
+	float prixHT;
+	int quantiteEnstock;
+	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -49,27 +54,61 @@ public class addArticle extends JFrame {
 		JLabel lblNewLabel = new JLabel("Ajouter un produit");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(121, 11, 158, 14);
-		getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Nom Produit :");
-		lblNewLabel_1.setBounds(77, 64, 69, 14);
-		getContentPane().add(lblNewLabel_1);
+		JLabel LabelProduit = new JLabel("Nom Produit :");
+		LabelProduit.setBounds(56, 64, 90, 14);
 		
-		textField = new JTextField();
-		textField.setBounds(156, 61, 86, 20);
-		getContentPane().add(textField);
-		textField.setColumns(10);
+		JTextField libelleProduit = new JTextField();
+		libelleProduit.setBounds(184, 61, 118, 20);
+		libelleProduit.setColumns(10);
+		String intitule = libelleProduit.getText();
 		
-		JLabel lblNewLabel_2 = new JLabel("Cat\u00E9gorie Produit :");
-		lblNewLabel_2.setBounds(77, 106, 97, 14);
-		getContentPane().add(lblNewLabel_2);
+		JLabel LabelCategorie = new JLabel("Cat\u00E9gorie Produit :");
+		LabelCategorie.setBounds(56, 106, 118, 14);
 		
-		String[] listCategorie = { "fruit", "legume", "produitlaitier", "viande" };
+		String[] listCategorie = { "fruit", "legume", "produit laitier", "viande" };
 		JComboBox comboBox = new JComboBox(listCategorie);
-		comboBox.setBounds(184, 102, 86, 22);
+		comboBox.setBounds(184, 102, 118, 22);
+		comboBox.setSelectedIndex(0);
+		comboBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String test = comboBox.getSelectedItem().toString();
+			}
+		});
 		
+		
+		
+		JLabel lblNewLabel_1 = new JLabel("Quantit\u00E9 :");
+		lblNewLabel_1.setBounds(56, 146, 90, 14);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(184, 143, 118, 20);
+		textField_1.setColumns(10);
+		int quantiteEnstock = Integer.parseInt(textField_1.getText());
+		
+		JButton Ajouter = new JButton("AJOUTER");
+		Ajouter.setBounds(153, 189, 89, 23);
+		Ajouter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int prixHT = 15;
+				new Article(reference, intitule, prixHT, quantiteEnstock);
+				setVisible(false);
+		        new Acceuil().setVisible(true);
+			}
+		});
+		
+		getContentPane().add(lblNewLabel);
+		getContentPane().add(LabelProduit);
+		getContentPane().add(libelleProduit);
+		getContentPane().add(LabelCategorie);
 		getContentPane().add(comboBox);
+		getContentPane().add(Ajouter);
+		getContentPane().add(lblNewLabel_1);
+		getContentPane().add(textField_1);
+		
+		
 
 		setVisible(true);
 	}
+
 }
