@@ -29,10 +29,15 @@ public class Acceuil extends JFrame {
 		addWindowListener(l);
 		setSize(427, 285);
 		setLocationRelativeTo(null);
+		
+		JLabel Title = new JLabel("Bienvenue chez casino");
+		Title.setBounds(6, 11, 399, 16);
+		Title.setHorizontalAlignment(SwingConstants.CENTER);
+		getContentPane().add(Title);
 
-		JButton btnNewButton_1_1_1 = new JButton("Produit laitier");
-		btnNewButton_1_1_1.setBounds(154, 51, 100, 28);
-		btnNewButton_1_1_1.addActionListener(new ActionListener() {
+		JButton ButtonLAit = new JButton("Produit laitier");
+		ButtonLAit.setBounds(154, 51, 100, 28);
+		ButtonLAit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 		        new produitlaitier().setVisible(true);
@@ -40,41 +45,37 @@ public class Acceuil extends JFrame {
 		});
 		getContentPane().setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Bienvenue chez casino");
-		lblNewLabel.setBounds(6, 11, 399, 16);
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		getContentPane().add(lblNewLabel);
-
-		JButton btnNewButton_1_1 = new JButton("Fruit");
-		btnNewButton_1_1.setBounds(154, 81, 100, 28);
-		btnNewButton_1_1.addActionListener(new ActionListener() {
+		JButton ButtonFruit = new JButton("Fruit");
+		ButtonFruit.setBounds(154, 81, 100, 28);
+		ButtonFruit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 		        new fruit().setVisible(true);
 			}
 		});
 
-		JButton btnNewButton = new JButton("Legume");
-		btnNewButton.setBounds(154, 110, 100, 28);
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton ButtonLegume = new JButton("Legume");
+		ButtonLegume.setBounds(154, 110, 100, 28);
+		ButtonLegume.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 		        new legume().setVisible(true); 
 			}
 		});
-		getContentPane().add(btnNewButton);
-		getContentPane().add(btnNewButton_1_1);
-		getContentPane().add(btnNewButton_1_1_1);
-
-		JButton btnNewButton_1 = new JButton("Viande");
-		btnNewButton_1.setBounds(154, 141, 100, 28);
-		btnNewButton_1.addActionListener(new ActionListener() {
+		
+		JButton ButtonViande = new JButton("Viande");
+		ButtonViande.setBounds(154, 141, 100, 28);
+		ButtonViande.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 		        new viande().setVisible(true);
 			}
 		});
-		getContentPane().add(btnNewButton_1);
+		
+		getContentPane().add(ButtonLegume);
+		getContentPane().add(ButtonFruit);
+		getContentPane().add(ButtonLAit);
+		getContentPane().add(ButtonViande);
 
 		setVisible(true);
 	}

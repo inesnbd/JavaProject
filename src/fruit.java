@@ -1,10 +1,13 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
 import javax.swing.DefaultListModel;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -53,6 +56,16 @@ public class fruit extends JFrame {
 		listProduit.addElement("...");
 		list.setBounds(68, 45, 278, 141);
 		getContentPane().add(list);
+		
+		JButton ButtonRetour = new JButton("Retour");
+		ButtonRetour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+		        new Acceuil().setVisible(true);
+			}
+		});
+		ButtonRetour.setBounds(155, 197, 89, 23);
+		getContentPane().add(ButtonRetour);
 		
 		
 

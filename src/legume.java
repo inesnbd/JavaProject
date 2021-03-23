@@ -36,6 +36,16 @@ public class legume extends JFrame {
 		list.setBounds(68, 45, 278, 141);
 		getContentPane().add(list);
 		
+		JButton ButtonRetour = new JButton("Retour");
+		ButtonRetour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+		        new Acceuil().setVisible(true);
+			}
+		});
+		ButtonRetour.setBounds(155, 197, 89, 23);
+		getContentPane().add(ButtonRetour);
+		
 		
 
 		setVisible(true);
