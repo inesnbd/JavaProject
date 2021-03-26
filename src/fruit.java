@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.event.*;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -11,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JTable;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -18,19 +21,16 @@ import javax.swing.border.EmptyBorder;
 public class fruit extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
 
-	/**
-	 * Launch the application.
-	 */
+	/* Launch the application. */
 	public static void main(String[] args) {
 		JFrame fruit = new fruit();
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	/* Create the frame. */
 	public fruit() {
-		setTitle("application java supermarché");
+		setTitle("application java supermarchï¿½");
 
 		WindowListener l = new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -48,15 +48,22 @@ public class fruit extends JFrame {
 		lblNewLabel.setBounds(121, 11, 158, 14);
 		getContentPane().add(lblNewLabel);
 		
-		DefaultListModel listProduit = new DefaultListModel();
-		JList list = new JList(listProduit);
-		listProduit.addElement("melon");
-		listProduit.addElement("fraise");
-		listProduit.addElement("orange");
-		listProduit.addElement("...");
-		list.setBounds(68, 45, 278, 141);
-		getContentPane().add(list);
+		String[] titre = {"id","fruits","descrptions","prix ","quantites"}; // on creer nos colonnes du tableau
 		
+		// tableau a deux dimensions
+			Object[][] data = {		
+		// on ajoute les infos du tableau en suivant le titre des colonnes
+				{1, "melon","du mexique", "1,60", "60"}, 
+				{2, "fraise", "du maroc", "3", "35"},
+				{3, "orange", "du jardin", "2,24", "50"},
+			};
+		JTable table = new JTable(data,titre);
+		table.setColumnSelectionAllowed(true);
+		table.setCellSelectionEnabled(true);
+		table.setBounds(54, 58, 325, 87);
+		
+		getContentPane().add(table);
+	
 		JButton ButtonRetour = new JButton("Retour");
 		ButtonRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -68,8 +75,8 @@ public class fruit extends JFrame {
 		getContentPane().add(ButtonRetour);
 		
 		
+		
 
 		setVisible(true);
 	}
-
 }

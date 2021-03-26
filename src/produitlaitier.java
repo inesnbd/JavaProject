@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.event.*;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -12,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -19,18 +22,16 @@ public class produitlaitier extends JFrame {
 
 	private JPanel contentPane;
 
-	/**
-	 * Launch the application.
-	 */
+	/* Launch the application.*/
+	
 	public static void main(String[] args) {
 		JFrame produitlaitier = new produitlaitier();
 	}
 
-	/**
-	 * Create the frame.
-	 */
+	/* Create the frame. */
+	
 	public produitlaitier() {
-		setTitle("application java supermarché");
+		setTitle("application java supermarchï¿½");
 
 		WindowListener l = new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -43,20 +44,26 @@ public class produitlaitier extends JFrame {
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 
-		JLabel lblNewLabel = new JLabel("Rayon Produit laitier");
+		JLabel lblNewLabel = new JLabel("Rayon Produits laitiers");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(121, 11, 158, 14);
 		getContentPane().add(lblNewLabel);
 		
-		DefaultListModel listProduit = new DefaultListModel();
-		JList list = new JList(listProduit);
-		listProduit.addElement("yagourt");
-		listProduit.addElement("fromage blanc");
-		listProduit.addElement("compté");
-		listProduit.addElement("...");
-		list.setBounds(68, 45, 278, 141);
+		String[] titre = {"id","produits laitiers","descrptions","prix ","quantites"}; // on creer nos colonnes du tableau
 		
-		getContentPane().add(list);
+		// tableau a deux dimensions
+			Object[][] data = {		
+		// on ajoute les infos du tableau en suivant le titre des colonnes
+				{1, "lait","demi ecreme", "0,80", "60"}, 
+				{2, "fromage", "fermier", "2,20", "35"},
+				{3, "yaourt", "0% de matieres grasses", "1,59", "50"},
+			};
+		JTable table = new JTable(data,titre);
+		table.setColumnSelectionAllowed(true);
+		table.setCellSelectionEnabled(true);
+		table.setBounds(54, 58, 325, 87);
+		
+		getContentPane().add(table);
 		
 		JButton ButtonRetour = new JButton("Retour");
 		ButtonRetour.addActionListener(new ActionListener() {

@@ -78,11 +78,23 @@ public class Acceuil extends JFrame {
 		BouttonAdd.setForeground(Color.WHITE);
 		BouttonAdd.setBackground(Color.BLUE);
 		BouttonAdd.setFont(UIManager.getFont("Button.font"));
-		BouttonAdd.setBounds(136, 172, 136, 28);
+		BouttonAdd.setBounds(136, 170, 136, 28);
 		BouttonAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 		        new addArticle().setVisible(true);
+			}
+		});
+		
+		JButton BouttonModif = new JButton("Modifier Produit");
+		BouttonModif.setForeground(Color.WHITE);
+		BouttonModif.setBackground(Color.BLUE);
+		BouttonModif.setFont(UIManager.getFont("Button.font"));
+		BouttonModif.setBounds(136, 200, 136, 28);
+		BouttonModif.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+		        new modifArticle().setVisible(true);
 			}
 		});
 		
@@ -91,6 +103,7 @@ public class Acceuil extends JFrame {
 		getContentPane().add(ButtonLAit);
 		getContentPane().add(ButtonViande);
 		getContentPane().add(BouttonAdd);
+		getContentPane().add(BouttonModif);
 
 		setVisible(true);
 	}
