@@ -66,11 +66,7 @@ public class addArticle extends JFrame {
 		JLabel LabelCategorie = new JLabel("Cat\u00E9gorie Produit :");
 		LabelCategorie.setBounds(56, 106, 118, 14);
 		
-<<<<<<< HEAD
 		String[] listCategorie = { "fruits", "legumes", "produits laitiers", "viandes" };
-=======
-		String[] listCategorie = { "fruit", "legume", "produit laitier", "viande" };
->>>>>>> ec60bdf0a7482d43cfe2e7060bd1c780eb065818
 		JComboBox comboBox = new JComboBox(listCategorie);
 		comboBox.setBounds(184, 102, 118, 22);
 		comboBox.setSelectedIndex(0);
