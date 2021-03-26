@@ -19,7 +19,7 @@ import javax.swing.JComboBox;
 import javax.swing.JToggleButton;
 import javax.swing.JSpinner;
 
-public class addArticle extends JFrame {
+public class modifArticle extends JFrame {
 	
 	private JPanel contentPane;
 	private JTextField textField;
@@ -32,14 +32,14 @@ public class addArticle extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		JFrame addArticle = new addArticle();
+		JFrame addArticle = new modifArticle();
 	}
 
 	/**
 	 * Create the frame.
 	 */
-	public addArticle() {
-		setTitle("application java supermarchï¿½");
+	public modifArticle() {
+		setTitle("application java supermarché");
 
 		WindowListener l = new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -52,53 +52,35 @@ public class addArticle extends JFrame {
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Ajouter un produit");
+		JLabel lblNewLabel = new JLabel("Modifier un produit");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(121, 11, 158, 14);
 		getContentPane().add(lblNewLabel);
 		
-		JLabel LabelProduit = new JLabel("Nom Produit :");
-		LabelProduit.setBounds(56, 64, 90, 14);
+		String[] listProduit = { "produit 1", "produit 2", "produit 3", "produit 4" };
+		JList list = new JList(listProduit);
+		list.setBounds(62, 48, 274, 128);
 		
-		JTextField libelleProduit = new JTextField();
-		libelleProduit.setBounds(184, 61, 118, 20);
-		libelleProduit.setColumns(10);
-		
-		JLabel LabelCategorie = new JLabel("Cat\u00E9gorie Produit :");
-		LabelCategorie.setBounds(56, 106, 118, 14);
-		
-		String[] listCategorie = { "fruits", "legumes", "produits laitiers", "viandes" };
-		JComboBox comboBox = new JComboBox(listCategorie);
-		comboBox.setBounds(184, 102, 118, 22);
-		comboBox.setSelectedIndex(0);
-		
-		JLabel lblNewLabel_1 = new JLabel("Quantit\u00E9 :");
-		lblNewLabel_1.setBounds(56, 146, 90, 14);
-		
-		JSpinner spinner = new JSpinner();
-		spinner.setBounds(184, 143, 118, 20);
-		
-		JButton Ajouter = new JButton("AJOUTER");
-		Ajouter.setBounds(153, 189, 89, 23);
-		Ajouter.addActionListener(new ActionListener() {
+		JButton Modifier = new JButton("MODIFIER");
+		Modifier.setBounds(105, 189, 89, 23);
+		Modifier.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int prixHT = 15;
-				String intitule = libelleProduit.getText();
-				int quantiteEnstock = (Integer) spinner.getValue();
-				String reference = comboBox.getSelectedItem().toString();
-				new Article(reference, intitule, prixHT, quantiteEnstock);
-				//setVisible(false);
-		        //new Acceuil().setVisible(true);
+				String selectedValue = (String) list.getSelectedValue();
+				//System.out.print(selectedValue);
 			}
 		});
 		
-		getContentPane().add(LabelProduit);
-		getContentPane().add(libelleProduit);
-		getContentPane().add(LabelCategorie);
-		getContentPane().add(comboBox);
-		getContentPane().add(Ajouter);
-		getContentPane().add(lblNewLabel_1);
-		getContentPane().add(spinner);
+		JButton Supprimer = new JButton("SUPPRIMER");
+		Supprimer.setBounds(205, 189, 89, 23);
+		Supprimer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String selectedValue = (String) list.getSelectedValue();
+			}
+		});
+		
+		getContentPane().add(Modifier);
+		getContentPane().add(Supprimer);
+		getContentPane().add(list);
 		
 		JButton ButtonRetour = new JButton("Retour");
 		ButtonRetour.addActionListener(new ActionListener() {
@@ -109,6 +91,8 @@ public class addArticle extends JFrame {
 		});
 		ButtonRetour.setBounds(153, 212, 89, 23);
 		getContentPane().add(ButtonRetour);
+		
+		
 		
 
 		setVisible(true);
