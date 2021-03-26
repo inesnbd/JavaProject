@@ -8,6 +8,13 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Random;
+import com.mysql.jdbc.ResultSet;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -48,21 +55,69 @@ public class viande extends JFrame {
 		lblNewLabel.setBounds(121, 11, 158, 14);
 		getContentPane().add(lblNewLabel);
 		
-		String[] titre = {"id","viandes","descrptions","prix ","quantites"}; // on creer nos colonnes du tableau
-		
-		// tableau a deux dimensions
-			Object[][] data = {		
-		// on ajoute les infos du tableau en suivant le titre des colonnes
-				{1, "porc","elevage bio", "4,69", "60"}, 
-				{2, "boeuf", "label rouge", "6", "35"},
-				{3, "poulet", "fermier", "3,24", "50"},
-			};
+		String url ="jdbc:mysql://localhost:3306/projet_java";
+		String login = "aldrick";
+		String passwd = "1234";
+		Connection cn = null;
+		Statement st =null;
+		ResultSet rs =null;
+		try {
+			//Etape 1 : Chargement du driver 
+			Class.forName("org.gjt.mm.mysql.Driver");
+			
+			//Etape 2 : récupération de la connection
+			cn = DriverManager.getConnection(url,login,passwd);
+			
+			//Etape 3 : Création d'un statement 
+			st = cn.createStatement();
+			String sql = "SELECT * FROM viandes";
+			
+			// Etape 4 éxécution requête
+			rs=(ResultSet) st.executeQuery(sql);
+			
+			String[] titre = {"id","viande","descrptions","prix ","quantites"}; // on creer nos colonnes du tableau
+		      String data[][] = new String[10][5];
+		    
+		      int i = 0;
+		      while (rs.next()) {
+		        int id = rs.getInt("id");
+		        String nom = rs.getString("viande");
+		        String age = rs.getString("description");
+		        float prix = rs.getFloat("prix");
+		        int quantites = rs.getInt("quantites");
+		        data[i][0] = id + "";
+		        data[i][1] = nom;
+		        data[i][2] = age;
+		        data[i][3] = prix+"";
+		        data[i][4] = quantites+"";
+		        i++;
+		      }
+
 		JTable table = new JTable(data,titre);
 		table.setColumnSelectionAllowed(true);
 		table.setCellSelectionEnabled(true);
 		table.setBounds(54, 58, 325, 87);
+		table.getColumnModel().getColumn(0).setMaxWidth(40);
+		table.getColumnModel().getColumn(1).setMaxWidth(60);
+		table.getColumnModel().getColumn(3).setMaxWidth(45);
+		table.getColumnModel().getColumn(4).setMaxWidth(40);
 		
 		getContentPane().add(table);
+	
+		}catch (SQLException e) {
+			e.printStackTrace();					
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				//Etape 6 : libérer ressources de la mémoire.
+				cn.close();
+				st.close();
+			}catch(SQLException e) {
+			e.printStackTrace();
+			}
+		
+		}
 		
 		JButton ButtonRetour = new JButton("Retour");
 		ButtonRetour.addActionListener(new ActionListener() {

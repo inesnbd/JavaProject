@@ -5,6 +5,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.util.Random;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Random;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -82,13 +89,62 @@ public class addArticle extends JFrame {
 		Ajouter.setBounds(153, 189, 89, 23);
 		Ajouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Random random = new Random();
+				int nb;
+				nb = random.nextInt(999);
+				String Description= "";
+				Float prix2 = random.nextFloat();
+				int prix = random.nextInt(100);	
+				Float Prix = prix + prix2 ;
 				int prixHT = 15;
 				String intitule = libelleProduit.getText();
 				int quantiteEnstock = (Integer) spinner.getValue();
 				String reference = comboBox.getSelectedItem().toString();
 				new Article(reference, intitule, prixHT, quantiteEnstock);
-				//setVisible(false);
-		        //new Acceuil().setVisible(true);
+				
+				System.out.println(spinner.getValue());
+				
+				String url ="jdbc:mysql://localhost:3306/projet_java";
+				String login = "aldrick";
+				String passwd = "1234";
+				Connection cn = null;
+				Statement st =null;
+				try {
+					//Etape 1 : Chargement du driver 
+					Class.forName("org.gjt.mm.mysql.Driver");
+					//Etape 2 : récupération de la connection
+					cn = DriverManager.getConnection(url,login,passwd);
+					//Etape 3 : Création d'un statement 
+					st = cn.createStatement();
+					// Etape 4 éxécution requête
+					if (comboBox.getSelectedIndex()==0){  					
+						String sql = "INSERT INTO fruits VALUES ('"+nb+"','"+libelleProduit.getText()+"','"+Description+"','"+Prix+"','"+spinner.getValue()+"')";
+						st.executeUpdate(sql);
+					}else if (comboBox.getSelectedIndex()==1) {
+						String sql = "INSERT INTO legumes VALUES ('"+nb+"','"+libelleProduit.getText()+"','"+Description+"','"+Prix+"','"+spinner.getValue()+"')";
+						st.executeUpdate(sql);
+					}else if (comboBox.getSelectedIndex()==2) {
+						String sql = "INSERT INTO produitlaitiers VALUES ('"+nb+"','"+libelleProduit.getText()+"','"+Description+"','"+Prix+"','"+spinner.getValue()+"')";
+						st.executeUpdate(sql);
+					}else {
+						String sql = "INSERT INTO viandes VALUES ('"+nb+"','"+libelleProduit.getText()+"','"+Description+"','"+Prix+"','"+spinner.getValue()+"')";
+						st.executeUpdate(sql);
+					}
+					
+				}catch (SQLException exc1) {
+					exc1.printStackTrace();					
+				}catch (ClassNotFoundException exc1) {
+					exc1.printStackTrace();
+				}finally {
+					try {
+						//Etape 5 : libérer ressources de la mémoire.
+						cn.close();
+						st.close();
+					}catch(SQLException exc1) {
+						exc1.printStackTrace();
+					}
+				
+				}
 			}
 		});
 		
