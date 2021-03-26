@@ -3,7 +3,10 @@
 /Acceuil$3.class
 /Acceuil$5.class
 /Acceuil.class
+<<<<<<< HEAD
 /Article.class
+=======
+>>>>>>> ec60bdf0a7482d43cfe2e7060bd1c780eb065818
 /addArticle$1.class
 /addArticle.class
 /fruit$1.class
@@ -18,3 +21,12 @@
 /viande$1.class
 /viande$2.class
 /viande.class
+<<<<<<< HEAD
+=======
+/addArticle.class
+/addArticle$1.class
+/Acceuil$6.class
+/addArticle$2.class
+/addArticle$3.class
+>>>>>>> ec60bdf0a7482d43cfe2e7060bd1c780eb065818
+/.DS_Store
