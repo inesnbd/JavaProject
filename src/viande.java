@@ -61,7 +61,6 @@ public class viande extends JFrame {
 		table.setColumnSelectionAllowed(true);
 		table.setCellSelectionEnabled(true);
 		table.setBounds(54, 58, 325, 87);
-		table.getRootPane().add(table.getTableHeader(), BorderLayout.NORTH); // permet dajouter le titre en haut
 		
 		getContentPane().add(table);
 		

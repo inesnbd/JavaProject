@@ -100,6 +100,15 @@ public class addArticle extends JFrame {
 		getContentPane().add(lblNewLabel_1);
 		getContentPane().add(spinner);
 		
+		JButton ButtonRetour = new JButton("Retour");
+		ButtonRetour.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+		        new Acceuil().setVisible(true);
+			}
+		});
+		ButtonRetour.setBounds(153, 212, 89, 23);
+		getContentPane().add(ButtonRetour);
 		
 
 		setVisible(true);

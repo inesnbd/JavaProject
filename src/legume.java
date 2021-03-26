@@ -20,11 +20,15 @@ import java.awt.BorderLayout;
 import java.awt.event.*;
 
 public class legume extends JFrame {
+	
+	private JPanel contentPane;
 
 	/* Launch the application.*/
-	private static final long serialVersionUID = 1L;
+	public static void main(String[] args) {
+		JFrame legume = new legume();
+	}
 
-	/* Create the frame. */
+	/* Create the frame. */	
 	public legume() {
 		setTitle("application java supermarch�");
 
@@ -57,7 +61,7 @@ public class legume extends JFrame {
 		table.setColumnSelectionAllowed(true);
 		table.setCellSelectionEnabled(true);
 		table.setBounds(54, 58, 325, 87);
-		table.getRootPane().add(table.getTableHeader(), BorderLayout.NORTH); // permet dajouter le titre en haut
+		//table.getRootPane().add(table.getTableHeader(), BorderLayout.NORTH); // permet dajouter le titre en haut
 		
 		getContentPane().add(table);
 		
