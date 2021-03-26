@@ -16,16 +16,17 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
+import javax.swing.JToggleButton;
+import javax.swing.JSpinner;
 
 public class addArticle extends JFrame {
 	
 	private JPanel contentPane;
 	private JTextField textField;
-	long reference ;
+	String reference ;
 	String intitule;
 	float prixHT;
 	int quantiteEnstock;
-	private JTextField textField_1;
 
 	/**
 	 * Launch the application.
@@ -61,7 +62,6 @@ public class addArticle extends JFrame {
 		JTextField libelleProduit = new JTextField();
 		libelleProduit.setBounds(184, 61, 118, 20);
 		libelleProduit.setColumns(10);
-		String intitule = libelleProduit.getText();
 		
 		JLabel LabelCategorie = new JLabel("Cat\u00E9gorie Produit :");
 		LabelCategorie.setBounds(56, 106, 118, 14);
@@ -70,30 +70,24 @@ public class addArticle extends JFrame {
 		JComboBox comboBox = new JComboBox(listCategorie);
 		comboBox.setBounds(184, 102, 118, 22);
 		comboBox.setSelectedIndex(0);
-		comboBox.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				String test = comboBox.getSelectedItem().toString();
-			}
-		});
-		
-		
 		
 		JLabel lblNewLabel_1 = new JLabel("Quantit\u00E9 :");
 		lblNewLabel_1.setBounds(56, 146, 90, 14);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(184, 143, 118, 20);
-		textField_1.setColumns(10);
-		int quantiteEnstock = Integer.parseInt(textField_1.getText());
+		JSpinner spinner = new JSpinner();
+		spinner.setBounds(184, 143, 118, 20);
 		
 		JButton Ajouter = new JButton("AJOUTER");
 		Ajouter.setBounds(153, 189, 89, 23);
 		Ajouter.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int prixHT = 15;
+				String intitule = libelleProduit.getText();
+				int quantiteEnstock = (Integer) spinner.getValue();
+				String reference = comboBox.getSelectedItem().toString();
 				new Article(reference, intitule, prixHT, quantiteEnstock);
-				setVisible(false);
-		        new Acceuil().setVisible(true);
+				//setVisible(false);
+		        //new Acceuil().setVisible(true);
 			}
 		});
 		
@@ -104,11 +98,10 @@ public class addArticle extends JFrame {
 		getContentPane().add(comboBox);
 		getContentPane().add(Ajouter);
 		getContentPane().add(lblNewLabel_1);
-		getContentPane().add(textField_1);
+		getContentPane().add(spinner);
 		
 		
 
 		setVisible(true);
 	}
-
 }
