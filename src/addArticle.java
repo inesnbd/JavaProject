@@ -33,7 +33,7 @@ public class addArticle extends JFrame {
 	 * Create the frame.
 	 */
 	public addArticle() {
-		setTitle("application java supermarché");
+		setTitle("application java supermarchï¿½");
 
 		WindowListener l = new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
@@ -64,7 +64,7 @@ public class addArticle extends JFrame {
 		lblNewLabel_2.setBounds(77, 106, 97, 14);
 		getContentPane().add(lblNewLabel_2);
 		
-		String[] listCategorie = { "fruit", "legume", "produitlaitier", "viande" };
+		String[] listCategorie = { "fruits", "legumes", "produits laitiers", "viandes" };
 		JComboBox comboBox = new JComboBox(listCategorie);
 		comboBox.setBounds(184, 102, 86, 22);
 		
