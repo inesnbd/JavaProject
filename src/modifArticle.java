@@ -5,6 +5,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -14,10 +18,14 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import com.mysql.jdbc.ResultSet;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JToggleButton;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 
 public class modifArticle extends JFrame {
 	
@@ -27,6 +35,8 @@ public class modifArticle extends JFrame {
 	String intitule;
 	float prixHT;
 	int quantiteEnstock;
+	DefaultListModel demoList = new DefaultListModel();
+	DefaultListModel list2 = new DefaultListModel();
 
 	/**
 	 * Launch the application.
@@ -46,6 +56,95 @@ public class modifArticle extends JFrame {
 				System.exit(0);
 			}
 		};
+		
+		String url ="jdbc:mysql://localhost:3306/super_march�";
+		String login = "root";
+		String passwd = "root";
+		Connection cn = null;
+		Statement st =null;
+		ResultSet rs =null;
+		try {
+			//Etape 1 : Chargement du driver 
+			Class.forName("org.gjt.mm.mysql.Driver");
+			
+			//Etape 2 : récupération de la connection
+			cn = DriverManager.getConnection(url,login,passwd);
+			
+			//Etape 3 : Création d'un statement 
+			st = cn.createStatement();
+			String sql = "SELECT * FROM viandes";
+			
+			// Etape 4 éxécution requête
+			rs=(ResultSet) st.executeQuery(sql);
+		    
+		      int i = 0;
+		      while (rs.next()) {
+		    	  String nom = rs.getString("viande");
+		    	  String age = rs.getString("description");
+		    	  int id = rs.getInt("id");
+		    	  demoList.addElement("id: "+id+" nom: "+nom +" description :"+age);
+		      }
+		      JList listd = new JList(demoList);
+		      listd.setBounds(33, 48, 141, 128);
+		      getContentPane().add(listd);
+				
+	
+		}catch (SQLException e) {
+			e.printStackTrace();					
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				//Etape 6 : libérer ressources de la mémoire.
+				cn.close();
+				st.close();
+			}catch(SQLException e) {
+			e.printStackTrace();
+			}
+		
+		}
+		cn = null;
+		st =null;
+		rs =null;
+		try {
+			//Etape 1 : Chargement du driver 
+			Class.forName("org.gjt.mm.mysql.Driver");
+			
+			//Etape 2 : récupération de la connection
+			cn = DriverManager.getConnection(url,login,passwd);
+			
+			//Etape 3 : Création d'un statement 
+			st = cn.createStatement();
+			String sql = "SELECT * FROM fruits";
+			
+			// Etape 4 éxécution requête
+			rs=(ResultSet) st.executeQuery(sql);
+		    
+		      int i = 0;
+		      while (rs.next()) {
+		    	  int id = rs.getInt("id");
+			        String nom = rs.getString("fruit");
+			        String age = rs.getString("description");
+		    	  list2.addElement("id: "+id+" nom: "+nom +" description :"+age);
+		      }
+		      JList list_1 = new JList();
+		      list_1.setBounds(224, 48, 118, 128);
+			  getContentPane().add(list_1);
+	
+		}catch (SQLException e) {
+			e.printStackTrace();					
+		}catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				//Etape 6 : libérer ressources de la mémoire.
+				cn.close();
+				st.close();
+			}catch(SQLException e) {
+			e.printStackTrace();
+			}
+		
+		}
 
 		addWindowListener(l);
 		setSize(427, 285);
@@ -80,7 +179,7 @@ public class modifArticle extends JFrame {
 		
 		getContentPane().add(Modifier);
 		getContentPane().add(Supprimer);
-		getContentPane().add(list);
+		//getContentPane().add(list);
 		
 		JButton ButtonRetour = new JButton("Retour");
 		ButtonRetour.addActionListener(new ActionListener() {
@@ -90,10 +189,7 @@ public class modifArticle extends JFrame {
 			}
 		});
 		ButtonRetour.setBounds(153, 212, 89, 23);
-		getContentPane().add(ButtonRetour);
-		
-		
-		
+		getContentPane().add(ButtonRetour);		
 
 		setVisible(true);
 	}

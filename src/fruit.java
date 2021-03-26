@@ -55,9 +55,9 @@ public class fruit extends JFrame {
 		lblNewLabel.setBounds(121, 11, 158, 14);
 		getContentPane().add(lblNewLabel);
 
-		String url ="jdbc:mysql://localhost:3306/projet_java";
-		String login = "aldrick";
-		String passwd = "1234";
+		String url ="jdbc:mysql://localhost:3306/super_marché";
+		String login = "root";
+		String passwd = "root";
 		Connection cn = null;
 		Statement st =null;
 		ResultSet rs =null;

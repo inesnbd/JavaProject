@@ -21,6 +21,9 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+
+import com.mysql.jdbc.ResultSet;
+
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JToggleButton;
@@ -104,11 +107,12 @@ public class addArticle extends JFrame {
 				
 				System.out.println(spinner.getValue());
 				
-				String url ="jdbc:mysql://localhost:3306/projet_java";
-				String login = "aldrick";
-				String passwd = "1234";
+				String url ="jdbc:mysql://localhost:3306/super_marché";
+				String login = "root";
+				String passwd = "root";
 				Connection cn = null;
 				Statement st =null;
+				ResultSet rs =null;
 				try {
 					//Etape 1 : Chargement du driver 
 					Class.forName("org.gjt.mm.mysql.Driver");
