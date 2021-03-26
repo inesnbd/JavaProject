@@ -13,6 +13,8 @@ import javax.swing.UIManager;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import java.awt.Font;
+import java.awt.Color;
 
 public class Acceuil extends JFrame {
 	private static final long serialVersionUID = 1L;
@@ -72,10 +74,23 @@ public class Acceuil extends JFrame {
 			}
 		});
 		
+		JButton BouttonAdd = new JButton("Ajouter Produit");
+		BouttonAdd.setForeground(Color.WHITE);
+		BouttonAdd.setBackground(Color.BLUE);
+		BouttonAdd.setFont(UIManager.getFont("Button.font"));
+		BouttonAdd.setBounds(136, 172, 136, 28);
+		BouttonAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+		        new addArticle().setVisible(true);
+			}
+		});
+		
 		getContentPane().add(ButtonLegume);
 		getContentPane().add(ButtonFruit);
 		getContentPane().add(ButtonLAit);
 		getContentPane().add(ButtonViande);
+		getContentPane().add(BouttonAdd);
 
 		setVisible(true);
 	}
