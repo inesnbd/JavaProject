@@ -1,23 +1,23 @@
 
 public class Article {
 
-	long reference ;
+	String reference ;
 	String intitule;
 	float prixHT;
 	int quantiteEnstock;
 	
-	public Article(long reference, String intitule, float prixHT, int quantiteEnstock) {
+	public Article(String reference, String intitule, float prixHT, int quantiteEnstock) {
 		this.reference = reference;
 		this.intitule = intitule;
 		this.prixHT = prixHT;
 		this.quantiteEnstock = quantiteEnstock;
 	}
 
-	public long getReference() {
+	public String getReference() {
 		return reference;
 	}
 
-	public void setReference(long reference) {
+	public void setReference(String reference) {
 		this.reference = reference;
 	}
 
